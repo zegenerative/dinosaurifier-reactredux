@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import * as ml5 from "ml5";
-import * as model from './models/dinomodel/manifest.json'
-// const model = require('./models/dinomodel')
+
+const modelPath = 'http://localhost:3000/models/dinomodel'
 
 class App extends Component {
   state = {
     rnn: {},
-    input: ''
+    input: '',
+    result: ''
   }
 
   charRNN = async () => {
     // const rnn = await ml5.charRNN(model, modelLoaded)
     // also does not work:
-    const rnn = await ml5.charRNN('https://github.com/ml5js/ml5-examples/tree/release/p5js/CharRNN/CharRNN_Interactive/models/woolf/', modelLoaded)
+    const rnn = await ml5.charRNN(modelPath, modelLoaded)
     this.setState({
       rnn,
     }) 
@@ -32,13 +33,20 @@ class App extends Component {
     })
   }
 
-  onSubmit = (event) => {
-    console.log(model.default)
+  onSubmit = async (event) => {
     event.preventDefault()
-    console.log(this.state.rnn)
-    // this.state.rnn.generate({ seed: this.state.input }, function(err, results) {
-    //   console.log(results);
-    // });
+    const data = { 
+      seed: this.state.input,
+      temperature: 0.5,
+      length: 20
+    }
+    const results = await this.state.rnn.generate(data, function(err, results) {
+        console.log(results)
+        return results
+    })
+    this.setState({
+      result: this.state.input + results.sample
+    })
   }
 
   render() {
@@ -56,6 +64,7 @@ class App extends Component {
               />
           </label>
           <button>Generate</button>
+          <p>{ this.state.result !== '' ? this.state.result : '' }</p>
         </form>
       </div>
     );
