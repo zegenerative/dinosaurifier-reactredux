@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as ml5 from "ml5";
-import * as model from './models/dinomodel/manifest.json'
-// const model = require('./models/dinomodel')
+
+const modelPath = 'http://localhost:3000/models/dinomodel'
 
 class App extends Component {
   state = {
@@ -10,14 +10,13 @@ class App extends Component {
   }
 
   charRNN = async () => {
-    const rnn = await ml5.charRNN(model, modelLoaded)
-    // also does not work:
-    // const rnn = await ml5.charRNN('http://localhost:3000/src/models/dinomodel', modelLoaded)
+    const rnn = await ml5.charRNN(modelPath, modelLoaded)
     this.setState({
       rnn,
     }) 
 
     function modelLoaded() {
+      console.log(rnn)
       console.log('Model Loaded!');
     }
   }
@@ -33,12 +32,13 @@ class App extends Component {
   }
 
   onSubmit = (event) => {
-    console.log(model.default)
+    // console.log(model.default)
     event.preventDefault()
     console.log(this.state.rnn)
-    // this.state.rnn.generate({ seed: this.state.input }, function(err, results) {
-    //   console.log(results);
-    // });
+
+    this.state.rnn.generate({ seed: this.state.input }, function(err, results) {
+      console.log(results);
+    });
   }
 
   render() {
