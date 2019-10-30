@@ -10,7 +10,7 @@ class App extends Component {
   }
 
   charRNN = async () => {
-    const rnn = await ml5.charRNN('http://localhost:3000/src/models/dinomodel/', modelLoaded)
+    const rnn = await ml5.charRNN(model, modelLoaded)
     // also does not work:
     // const rnn = await ml5.charRNN('http://localhost:3000/src/models/dinomodel', modelLoaded)
     this.setState({
