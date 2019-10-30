@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import * as ml5 from 'ml5';
 import DinoName from './DinoName'
+import { name } from '../actions'
 const dinoNamesModel = 'http://localhost:3000/models/DinoModel'
 
-export default class DinoNameContainer extends Component {
+class DinoNameContainer extends Component {
     state = {
         nameModel: {},
         userName: '',
@@ -33,7 +35,9 @@ export default class DinoNameContainer extends Component {
 
     onSubmit = async (event) => {
         event.preventDefault()
-        this.state.nameStatus = 'loading...'
+        this.setState({
+            nameStatus: 'loading...'
+        })
         const data = { 
             seed: this.state.userName,
             temperature: 0.5,
@@ -43,9 +47,10 @@ export default class DinoNameContainer extends Component {
             return results
         })
         this.setState({
-            resultName: (this.state.userName + results.sample).toUpperCase(),
             nameStatus: ''
         })
+        const dinoName = (this.state.userName + results.sample).toUpperCase()
+        this.props.name(dinoName)
     }
 
     render() {
@@ -62,3 +67,7 @@ export default class DinoNameContainer extends Component {
         )
     }
 }
+  
+const mapDispatchToProps = { name }
+  
+export default connect(null, mapDispatchToProps)(DinoNameContainer)

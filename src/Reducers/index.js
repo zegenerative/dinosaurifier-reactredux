@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
-import results from './results'
+import name from './name'
+import description from './description'
 
 export default combineReducers({
-    results
+    name, description
 })

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { description } from '../actions'
 import * as ml5 from 'ml5'
 import DinoDescription from './DinoDescription'
 const dinoDescriptionsModel = 'http://localhost:3000/models/DinoDescriptionModel'
 
-export default class DinoDescriptionContainer extends Component {
+class DinoDescriptionContainer extends Component {
     state = {
         descriptionModel: {},
         resultDescription: '',
@@ -25,7 +27,9 @@ export default class DinoDescriptionContainer extends Component {
     }
 
     onClick = async () => {
-        this.state.descriptionStatus = 'loading...'
+        this.setState({
+            descriptionStatus: 'loading...'
+        })
         const data = { 
           seed: this.state.resultName,
           temperature: 0.5,
@@ -35,9 +39,9 @@ export default class DinoDescriptionContainer extends Component {
             return results
         })
         this.setState({
-          resultDescription: results.sample,
           descriptionStatus: ''
         })
+        this.props.description(results.sample)
     }
 
     render() {
@@ -52,3 +56,7 @@ export default class DinoDescriptionContainer extends Component {
         )
     }
 }
+
+const mapDispatchToProps = { description }
+  
+export default connect(null, mapDispatchToProps)(DinoDescriptionContainer)

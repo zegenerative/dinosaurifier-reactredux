@@ -1,14 +1,17 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
 
 export default function DinoName(props) {
 
-    const { userName, resultName, onChange, onSubmit } = props
+    const { userName, onChange, onSubmit, nameStatus } = props
 
     return (
         <div>
             <h4>Create your dinosaur name:</h4>
+            <p>{nameStatus}</p>
             <form onSubmit={onSubmit}> 
-                <label>Name:
+                <label>
                     <input 
                         type="text" 
                         onChange={onChange}
@@ -17,9 +20,12 @@ export default function DinoName(props) {
                         placeholder='your name'
                     />
                 </label>
-                <button>Generate</button>
+                <button>
+                    <h3>
+                    Generate
+                    </h3>
+                </button>
             </form>
-            <p>{ resultName !== '' ? resultName : '' }</p>
         </div>
     )
 }

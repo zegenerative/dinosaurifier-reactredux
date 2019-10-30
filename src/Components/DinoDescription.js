@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
 
 export default function DinoDescription(props) {
 
@@ -8,7 +9,11 @@ export default function DinoDescription(props) {
         <div>
             <h4>Create a description of your species:</h4>
             <p>{descriptionStatus}</p>
-            <button onClick={onClick}>Generate</button>
+            <button>
+                <h3>
+                Generate
+            </h3>
+            </button>
             <p>{resultDescription}</p>
         </div>
     )
