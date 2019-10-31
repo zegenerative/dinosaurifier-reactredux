@@ -6,7 +6,7 @@ export default function DinoName(props) {
 
     return (
         <div>
-            <h4>Create your dinosaur name:</h4>
+            <h4>Fill in your name here:</h4>
             <p>{nameStatus}</p>
             <form onSubmit={onSubmit}> 
                 <label>
