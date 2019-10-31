@@ -1,3 +1,6 @@
+# This project is an experiment of implementing Machine Learning in React Redux
+# It is built upn the ml5js library (https://ml5js.org/) and charRNN (https://github.com/ml5js/training-charRNN)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
