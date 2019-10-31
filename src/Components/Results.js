@@ -8,8 +8,8 @@ class Results extends Component {
             <Container
                 maxWidth="sm"
             >
-                <p>{ !this.props.name.name ? '' : this.props.name.name}</p>
-                <p>{ !this.props.description.description ? '' : this.props.description.description}</p>
+                <h3>{ !this.props.name.name ? '' : this.props.name.name}</h3>
+                <h4>{ !this.props.description.description ? '' : this.props.description.description}</h4>
             </Container>
         )
     }
