@@ -1,6 +1,6 @@
 # This project is an experiment of implementing Machine Learning in React Redux
 ### It is built with the ml5js library (https://ml5js.org/) and charRNN (https://github.com/ml5js/training-charRNN) and following this tutorial: (https://www.youtube.com/watch?v=xfuVcfwtEyw)
-#### The result is a single page app where you can -kind of- create a new dinosaur name based on your name and a ML-generated description
+#### The result is a single page app where you can create a new dinosaur name based on your name and a ML-generated description
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
