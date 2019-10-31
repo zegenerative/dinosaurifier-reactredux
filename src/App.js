@@ -6,12 +6,14 @@ import store from './store'
 import { Provider } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import { Box } from '@material-ui/core'
+import './App.css';
 
 export default class App extends Component {
 
   render() {
     return (
       <Provider store={store}>
+        <div className="App">
         <Grid
           container
           direction='column'
@@ -47,6 +49,7 @@ export default class App extends Component {
             </Box>
           </Box>
         </Grid>
+        </div>
       </Provider>
     )
   }
